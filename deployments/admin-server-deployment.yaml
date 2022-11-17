@@ -1,10 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.version: 1.26.1 (HEAD)
-  creationTimestamp: null
   labels:
     io.kompose.service: admin-server
   name: admin-server
@@ -13,13 +9,8 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: admin-server
-  strategy: {}
   template:
     metadata:
-      annotations:
-        kompose.cmd: kompose convert -f docker-compose.yml
-        kompose.version: 1.26.1 (HEAD)
-      creationTimestamp: null
       labels:
         io.kompose.service: admin-server
     spec:
@@ -31,12 +22,8 @@ spec:
             - --
             - java
             - org.springframework.boot.loader.JarLauncher
-          image: springcommunity/spring-petclinic-admin-server
+          image: asia-northeast3-docker.pkg.dev/hyunyoung-01-368306/gcpzg/spring-petclinic-admin-server
           name: admin-server
           ports:
             - containerPort: 9090
-          resources:
-            limits:
-              memory: "536870912"
       restartPolicy: Always
-status: {}
